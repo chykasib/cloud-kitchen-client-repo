@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../Context/AuthProvider';
 const Header = () => {
+    const { user, logOut } = useContext(AuthContext);
+    const singOutHandler = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.error(error))
+    }
     return (
         <Navbar className='py-4' collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Container>
@@ -15,7 +22,11 @@ const Header = () => {
                         <Link to={'/'}><Button variant="warning">Home</Button></Link>
                     </Nav>
                     <Nav>
-                        <Link to={'/login'}><Button variant="warning">Login</Button></Link>
+                        {
+                            user?.email ? <Link><Button onClick={singOutHandler} variant="light">Sing Out</Button></Link> : <Link to={'/login'}><Button className='ms-3' variant="warning">Login</Button></Link>
+                        }
+                    </Nav>
+                    <Nav>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

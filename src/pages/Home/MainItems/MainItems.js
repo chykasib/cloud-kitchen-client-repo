@@ -19,7 +19,7 @@ const MainItems = ({ mainService }) => {
                                 <Card.Text>
                                     {details.slice(0, 100)}
                                 </Card.Text>
-                                <Link to={`details/${_id}`}><Button variant="primary">view details</Button></Link>
+                                <Link to={`serviceDetails/${_id}`}><Button variant="primary">view details</Button></Link>
                             </Card.Body>
                         </Card>
                     </Col>

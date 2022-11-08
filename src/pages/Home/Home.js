@@ -4,9 +4,11 @@ import Row from 'react-bootstrap/Row';
 import { Link, useLoaderData } from 'react-router-dom';
 import MainItems from './MainItems/MainItems';
 import { Button } from 'react-bootstrap';
+import useTitle from '../../Hooks/UseTitle';
 const Home = () => {
     const services = useLoaderData()
     console.log(services)
+    useTitle('Home')
     return (
         <div>
             <section className='my-5 container'>
