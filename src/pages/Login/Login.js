@@ -3,10 +3,11 @@ import { Card } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
+import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../../Context/AuthProvider';
 import useTitle from '../../Hooks/UseTitle';
 const Login = () => {
-    const { signInByEmailAndPassword } = useContext(AuthContext)
+    const { signInByEmailAndPassword, googleSingIn, githubLogin } = useContext(AuthContext)
     useTitle('Login')
     const loginHandler = e => {
         e.preventDefault();
@@ -23,6 +24,24 @@ const Login = () => {
             .catch(error => console.error(error));
 
     }
+
+    const googleSignInHandler = () => {
+        googleSingIn()
+            .then(result => {
+                const user = result.user;
+                console.log(user)
+            })
+            .catch(error => console.error(error))
+    }
+
+    const githubSignInHandler = () => {
+        githubLogin()
+            .then(result => {
+                const user = result.user;
+                console.log(user)
+            })
+            .catch(error => console.error(error))
+    }
     return (
         <Card className='container w-50 my-5'>
             <Form onSubmit={loginHandler} className='my-2 mx-3 p-3'>
@@ -37,6 +56,8 @@ const Login = () => {
                 <Button className='w-100' variant="warning" type="submit">
                     Login
                 </Button>
+                <Button onClick={googleSignInHandler} className='my-3 me-4' variant="success"><FaGoogle className='me-2'></FaGoogle> Google</Button>
+                <Button onClick={githubSignInHandler} variant="dark"><FaGithub className='me-2'></FaGithub> Github</Button>
                 <hr /><p>New to Here?</p><hr />
                 <Link to={'/register'}><Button variant="link"> Create your account</Button></Link>
             </Form>

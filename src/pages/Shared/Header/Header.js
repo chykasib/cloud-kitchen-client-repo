@@ -27,6 +27,7 @@ const Header = () => {
                         }
                     </Nav>
                     <Nav>
+                        <Link className='ms-3' to={'/blog'}><Button variant="info">Blog</Button></Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
