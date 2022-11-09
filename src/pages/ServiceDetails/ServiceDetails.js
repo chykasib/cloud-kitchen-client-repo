@@ -3,11 +3,10 @@ import { useLoaderData } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import { AuthContext } from '../../Context/AuthProvider';
 import ReviewSection from '../ReviewSection/ReviewSection';
-import { Image } from 'react-bootstrap';
 const ServiceDetails = () => {
     const { user } = useContext(AuthContext)
     const service = useLoaderData();
-    const { name, img, price, details } = service;
+    const { name, img, price, details, _id } = service;
     console.log(service)
     return (
         <div>
@@ -35,7 +34,7 @@ const ServiceDetails = () => {
             <section>
                 <h1 className='pb-4'>Reviews</h1>
                 <div>
-                    <ReviewSection></ReviewSection>
+                    <ReviewSection id={_id} name={name}></ReviewSection>
                 </div>
             </section>
         </div>

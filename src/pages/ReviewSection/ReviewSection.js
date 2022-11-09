@@ -1,14 +1,39 @@
 import React, { useContext } from 'react';
-import { Button, Card, Image } from 'react-bootstrap';
+import { Button, Card, Form, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
-const ReviewSection = () => {
+const ReviewSection = ({ _id, name }) => {
     const { user } = useContext(AuthContext)
+
+    const handleSubmit = e => {
+        e.preventDefault()
+        const form = e.target;
+        const review = form.review.value;
+        const reviews = {
+            service: _id,
+            serviceName: name,
+            email: user?.email,
+            review
+
+        }
+
+        fetch('http://localhost:5000/reviews', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(reviews)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    form.reset('')
+                }
+            })
+            .catch(error => console.error(error))
+    }
     return (
         <div className='container'>
             <div>
                 {
-
                     user?.email ?
                         <div>
                             <Card className='container w-50 my-5' style={{ width: '18rem' }}>
@@ -28,9 +53,17 @@ const ReviewSection = () => {
                                     </div>
                                 </div>
                                 <h4>Your Review</h4>
-                                <textarea className='m-3 ps-3 pt-3 fs-5' name="review" id="" cols="20" rows="10" placeholder='What do you think about this service?'>
-                                </textarea>
-                                <Button className='my-3' variant="dark">Submit</Button>
+                                <Form onSubmit={handleSubmit}>
+                                    <Form.Group className="m-3 ps-3 pt-3 fs-5" controlId="text">
+                                        <Form.Control as="textarea"
+                                            required
+                                            name='review'
+                                            type="text"
+                                            placeholder="What do you think about this service?"
+                                        />
+                                    </Form.Group>
+                                    <Button className='my-3' type="submit" variant="dark">Submit</Button>
+                                </Form>
                             </Card>
                         </div> :
                         <div className="mb-5">
