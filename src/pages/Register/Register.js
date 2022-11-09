@@ -8,23 +8,34 @@ import { AuthContext } from '../../Context/AuthProvider';
 import useTitle from '../../Hooks/UseTitle';
 
 const Register = () => {
-    const { createUser, googleSingIn, githubLogin } = useContext(AuthContext)
+    const { createUser, googleSingIn, githubLogin, updateUserProfile } = useContext(AuthContext)
     useTitle('Register')
     const registerHandler = e => {
         e.preventDefault();
         const form = e.target;
         const name = form.name.value;
+        const photoURL = form.photoURL.value;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(name, email, password)
+        console.log(name, photoURL, email, password)
         createUser(email, password)
             .then(result => {
                 const user = result.user;
                 form.reset('');
+                updateUserProfileHandler(name, email)
                 console.log(user);
             })
             .catch(error => console.error(error));
 
+    }
+    const updateUserProfileHandler = (name, photoURL) => {
+        const profile = {
+            displayName: name,
+            photoURL: photoURL
+        }
+        updateUserProfile(profile)
+            .then(() => { })
+            .catch(error => console.error(error))
     }
     const googleSignInHandler = () => {
         googleSingIn()
@@ -42,12 +53,17 @@ const Register = () => {
             })
             .catch(error => console.error(error))
     }
+
     return (
         <Card className='container w-50 my-5'>
             <Form onSubmit={registerHandler} className='my-2 mx-3 p-3'>
                 <Form.Group className="mb-3" controlId="formBasicName">
                     <Form.Label>Name</Form.Label>
                     <Form.Control type="text" name='name' placeholder="Enter Your Name" />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicPhoto">
+                    <Form.Label>Photo URL</Form.Label>
+                    <Form.Control type="photoURL" name='photoURL' placeholder="Enter Your photoURL" />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
