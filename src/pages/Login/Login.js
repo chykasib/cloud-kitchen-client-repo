@@ -2,11 +2,14 @@ import React, { useContext } from 'react';
 import { Card } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../../Context/AuthProvider';
 import useTitle from '../../Hooks/UseTitle';
 const Login = () => {
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state?.from?.pathname || '/';
     const { signInByEmailAndPassword, googleSingIn, githubLogin } = useContext(AuthContext)
     useTitle('Login')
     const loginHandler = e => {
@@ -19,6 +22,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 form.reset('');
+                navigate(from, { replace: true })
                 console.log(user)
             })
             .catch(error => console.error(error));
