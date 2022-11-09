@@ -23,9 +23,9 @@ const MainItems = ({ mainService }) => {
                                 <Card.Title>{name}</Card.Title>
                                 <Card.Title>Price: {price}</Card.Title>
                                 <Card.Text>
-                                    {details.slice(0, 100)}
+                                    <p className='text-center'>{details.slice(0, 100)}</p>
                                 </Card.Text>
-                                <Link to={`serviceDetails/${_id}`}><Button variant="primary">view details</Button></Link>
+                                <Link to={`serviceDetails/${_id}`}><Button variant="primary">Show Details</Button></Link>
                             </Card.Body>
                         </Card>
                     </Col>

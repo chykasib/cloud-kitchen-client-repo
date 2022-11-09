@@ -22,7 +22,7 @@ const Register = () => {
             .then(result => {
                 const user = result.user;
                 form.reset('');
-                updateUserProfileHandler(name, email)
+                updateUserProfileHandler(name, photoURL)
                 console.log(user);
             })
             .catch(error => console.error(error));

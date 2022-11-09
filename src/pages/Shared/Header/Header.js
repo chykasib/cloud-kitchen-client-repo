@@ -23,7 +23,13 @@ const Header = () => {
                     </Nav>
                     <Nav>
                         {
-                            user?.email ? <Link><Button onClick={singOutHandler} variant="light">Sing Out</Button></Link> : <Link to={'/login'}><Button className='ms-3' variant="warning">Login</Button></Link>
+                            user?.email ?
+                                <>
+                                    <Link className='me-2' to={'/review'}><Button variant="warning">My Reviews</Button></Link>
+                                    <Link className='me-2' to={'/addService'}><Button variant="light">Add Service</Button></Link>
+                                    <Link><Button onClick={singOutHandler} variant="light">Sing Out</Button></Link>
+                                </>
+                                : <Link to={'/login'}><Button className='ms-3' variant="warning">Login</Button></Link>
                         }
                     </Nav>
                     <Nav>
