@@ -1,12 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Context/AuthProvider';
 import Table from 'react-bootstrap/Table';
-import Toast from 'react-bootstrap/Toast';
 import ReviewRow from './ReviewRow';
 const Reviews = () => {
     const { user } = useContext(AuthContext);
     const [reviews, setReviews] = useState([]);
-    const [updateReviews, setUpdateReviews] = useState([])
     useEffect(() => {
         fetch(`http://localhost:5000/reviews?email=${user?.email}`)
             .then(res => res.json())
@@ -23,10 +21,8 @@ const Reviews = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.deletedCount > 0) {
-                    <Toast>
-                        <p>Successfully deleted review</p>
-                    </Toast>
-                    const remaining = reviews.map(review => review._id !== id);
+                    alert('review successfully deleted')
+                    const remaining = reviews.filter(review => review._id !== id);
                     setReviews(remaining)
                 }
 
@@ -37,7 +33,7 @@ const Reviews = () => {
         fetch(`http://localhost:5000/reviews/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(updateReviews)
+            body: JSON.stringify(user)
         })
             .then(res => res.json())
             .then(data => {
@@ -47,22 +43,39 @@ const Reviews = () => {
     }
     return (
         <div>
-            <Table bordered hover className='container m-5'>
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Service Name</th>
-                        <th>Review</th>
-                        <th>Email</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        reviews.map(review => <ReviewRow key={review._id} reviewItem={review} handleDelete={handleDelete}></ReviewRow>)
-                    }
-                </tbody>
-            </Table>
+            {
+                reviews.map(review =>
+                    <>
+                        <Table className='text-center container m-5'>
+                            {
+                                review.length === 0 ?
+                                    <thead>
+                                        <h1 className='my-5'> no item found</h1>
+
+                                    </thead>
+                                    :
+                                    <>
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th></th>
+                                                <th>Service Name</th>
+                                                <th>Review</th>
+                                                <th>Email</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {
+                                                reviews.map(review => <ReviewRow key={review._id} reviewItem={review} handleDelete={handleDelete}></ReviewRow>)
+                                            }
+                                        </tbody>
+                                    </>
+                            }
+                        </Table>
+                    </>
+                )
+
+            }
         </div>
     );
 };

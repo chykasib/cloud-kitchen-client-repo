@@ -5,6 +5,7 @@ import { Link, useLoaderData } from 'react-router-dom';
 import MainItems from './MainItems/MainItems';
 import { Button } from 'react-bootstrap';
 import useTitle from '../../Hooks/UseTitle';
+import About from './About/About';
 const Home = () => {
     const services = useLoaderData()
     console.log(services)
@@ -32,6 +33,9 @@ const Home = () => {
                         See All
                     </Button></Link>
                 </div>
+            </section>
+            <section className='my-5'>
+                <About></About>
             </section>
 
 
