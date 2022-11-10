@@ -2,7 +2,7 @@
 ** I used this website login authentication three ways email and password, google, github.
 ** this website user can add reviews and he / she can see only his/her reviews and this website two button reviews update button and delete button this route protected by private route 
 ** this website any user can see home page and blog data without login 
-** Web site live link: 
+** Web site live link: https://rock-cloud-kitchen.web.app/
 
 
 

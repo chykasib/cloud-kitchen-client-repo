@@ -17,11 +17,11 @@ export const router = createBrowserRouter([
         path: '/', element: <Main></Main>, errorElement: <ErrorPage />, children: [
             {
                 path: '/', element: <Home></Home>,
-                loader: () => fetch('http://localhost:5000/services')
+                loader: () => fetch('https://cloud-kitchen-server-iota.vercel.app/services')
             },
             {
                 path: '/services', element: <Services></Services>,
-                loader: () => fetch('http://localhost:5000/Allservices')
+                loader: () => fetch('https://cloud-kitchen-server-iota.vercel.app/Allservices')
             },
             {
                 path: '/login', element: <Login></Login>
@@ -31,7 +31,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'serviceDetails/:id', element: <ServiceDetails></ServiceDetails>,
-                loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
+                loader: ({ params }) => fetch(`https://cloud-kitchen-server-iota.vercel.app/services/${params.id}`)
             },
             {
                 path: '/blog', element: <Blog></Blog>

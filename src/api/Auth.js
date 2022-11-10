@@ -2,7 +2,7 @@ export const setAuthToken = (user) => {
     const currentUser = {
         email: user.email
     }
-    fetch(`http://localhost:5000/jwt`, {
+    fetch(`https://cloud-kitchen-server-iota.vercel.app/jwt`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(currentUser)

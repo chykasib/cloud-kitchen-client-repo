@@ -8,7 +8,7 @@ const ReviewSection = ({ _id, name }) => {
     const { user } = useContext(AuthContext)
     const [reviews, setReviews] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews?email=${user?.email}`)
+        fetch(`https://cloud-kitchen-server-iota.vercel.app/reviews?email=${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 setReviews(data)
@@ -26,7 +26,7 @@ const ReviewSection = ({ _id, name }) => {
             review
 
         }
-        fetch('http://localhost:5000/reviews', {
+        fetch('https://cloud-kitchen-server-iota.vercel.app/reviews', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -36,12 +36,14 @@ const ReviewSection = ({ _id, name }) => {
         })
             .then(res => res.json())
             .then(data => {
+
                 if (data.acknowledged) {
                     form.reset('')
                 }
             })
             .catch(error => console.error(error))
     }
+
     return (
         <div className='container'>
             <div>
@@ -107,6 +109,7 @@ const ReviewSection = ({ _id, name }) => {
                     )
                 }
             </div>
+            <Button variant="light">Sort</Button>
             <hr />
             <div>
                 <div className='text-center container ps-5 py-3'>
