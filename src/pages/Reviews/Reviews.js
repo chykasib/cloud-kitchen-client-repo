@@ -10,9 +10,9 @@ const Reviews = () => {
     useEffect(() => {
         fetch(`http://localhost:5000/reviews?email=${user?.email}`,
             {
-                headers: {
-                    authorization: `bearer ${localStorage.getItem('cloud-token')}`
-                }
+                // headers: {
+                //     authorization: `bearer ${localStorage.getItem('cloud-token')}`
+                // }
             })
             .then(res =>
                 res.json()
@@ -57,22 +57,30 @@ const Reviews = () => {
     return (
 
         <div>
-            <Table className='text-center container m-5'>
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th></th>
-                        <th>Service Name</th>
-                        <th>Review</th>
-                        <th>Email</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        reviews?.map(review => <ReviewRow key={review._id} reviewItem={review} handleDelete={handleDelete}></ReviewRow>)
-                    }
-                </tbody>
-            </Table>
+            {
+                reviews.length === 0 ?
+                    <p className=' py-5 fs-1'>No reviews were added</p>
+
+                    :
+                    <Table className='text-center container m-5'>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th>Service Name</th>
+                                <th>Review</th>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <>
+                                {
+                                    reviews?.map(review => <ReviewRow key={review._id} reviewItem={review} handleDelete={handleDelete}></ReviewRow>)
+                                }
+                            </>
+                        </tbody>
+                    </Table>
+            }
         </div>
 
     );

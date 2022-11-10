@@ -13,7 +13,7 @@ const AddService = () => {
         e.preventDefault()
         const form = e.target;
         const name = form.productName.value
-        const price = parseInt(form.price.value)
+        const price = form.price.value
         const img = form.img.value
         const details = form.details.value;
         const service = {

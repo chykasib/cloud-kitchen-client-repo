@@ -2,7 +2,9 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Button, Card, Form, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
+import useTitle from '../../Hooks/UseTitle';
 const ReviewSection = ({ _id, name }) => {
+    useTitle('Details')
     const { user } = useContext(AuthContext)
     const [reviews, setReviews] = useState([]);
     useEffect(() => {

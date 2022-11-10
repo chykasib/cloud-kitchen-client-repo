@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
 import { Link } from 'react-router-dom';
+import Spinner from 'react-bootstrap/Spinner';
+import { AuthContext } from '../../../Context/AuthProvider';
 const MainItems = ({ mainService }) => {
+    const { loading } = useContext(AuthContext)
+    if (loading) {
+        return <Spinner animation="border" />;
+    }
     const { name, img, price, details, _id } = mainService;
     return (
 
