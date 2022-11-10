@@ -1,10 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
-import { AuthContext } from '../../Context/AuthProvider';
 import ReviewSection from '../ReviewSection/ReviewSection';
 const ServiceDetails = () => {
-    const { user } = useContext(AuthContext)
     const service = useLoaderData();
     const { name, img, price, details, _id } = service;
     console.log(service)

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { Button } from 'react-bootstrap';
-const ReviewRow = ({ reviewItem, handleDelete }) => {
+const ReviewRow = ({ reviewItem, handleDelete, removeService }) => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);

@@ -2,10 +2,13 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Context/AuthProvider';
 import Table from 'react-bootstrap/Table';
 import ReviewRow from './ReviewRow';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import useTitle from '../../Hooks/UseTitle';
 const Reviews = () => {
     const { user } = useContext(AuthContext);
     const [reviews, setReviews] = useState([]);
+    const removeService = () => toast("service is added successfully");
     useTitle('Reviews')
     useEffect(() => {
         fetch(`http://localhost:5000/reviews?email=${user?.email}`)
@@ -23,7 +26,7 @@ const Reviews = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.deletedCount > 0) {
-                    alert('review successfully deleted')
+                    toast('review successfully deleted')
                     const remaining = reviews.filter(review => review._id !== id);
                     setReviews(remaining)
                 }
@@ -43,19 +46,11 @@ const Reviews = () => {
 
             })
     }
+    const item = 'no review added'
     return (
-        <div>
-            {
-                reviews.map(review =>
-                    <>
-                        <Table className='text-center container m-5'>
+        
+            <Table className='text-center container m-5'>
                             {
-                                review.length === 0 ?
-                                    <thead>
-                                        <h1 className='my-5'> no item found</h1>
-
-                                    </thead>
-                                    :
                                     <>
                                         <thead>
                                             <tr>
@@ -68,17 +63,13 @@ const Reviews = () => {
                                         </thead>
                                         <tbody>
                                             {
-                                                reviews.map(review => <ReviewRow key={review._id} reviewItem={review} handleDelete={handleDelete}></ReviewRow>)
+                                                reviews.map(review => <ReviewRow key={review._id} reviewItem={review} handleDelete={handleDelete} removeService={removeService}></ReviewRow>)
                                             }
                                         </tbody>
                                     </>
                             }
                         </Table>
-                    </>
-                )
-
-            }
-        </div>
+       
     );
 };
 

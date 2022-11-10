@@ -5,6 +5,7 @@ import Service from './Service/Service';
 
 const Services = () => {
     const allServices = useLoaderData()
+    console.log(allServices)
     return (
         <div className='container my-5'>
             <>
@@ -15,6 +16,7 @@ const Services = () => {
                 </Row>
             </>
         </div>
+
     );
 };
 

@@ -6,6 +6,7 @@ import MainItems from './MainItems/MainItems';
 import { Button } from 'react-bootstrap';
 import useTitle from '../../Hooks/UseTitle';
 import About from './About/About';
+import Banner from './Banner/Banner';
 const Home = () => {
     const services = useLoaderData()
     console.log(services)
@@ -37,8 +38,9 @@ const Home = () => {
             <section className='my-5'>
                 <About></About>
             </section>
-
-
+            <section className='my-5'>
+                <Banner></Banner>
+            </section>
         </div>
     );
 };
