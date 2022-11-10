@@ -28,7 +28,7 @@ const ReviewSection = ({ _id, name }) => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                authorization: `Bearer ${localStorage.getItem('cloud-token')}`
+                authorization: `bearer ${localStorage.getItem('cloud-token')}`
             },
             body: JSON.stringify(reviews)
         })
