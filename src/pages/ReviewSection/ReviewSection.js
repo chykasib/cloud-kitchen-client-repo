@@ -24,10 +24,12 @@ const ReviewSection = ({ _id, name }) => {
             review
 
         }
-
         fetch('http://localhost:5000/reviews', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('cloud-token')}`
+            },
             body: JSON.stringify(reviews)
         })
             .then(res => res.json())

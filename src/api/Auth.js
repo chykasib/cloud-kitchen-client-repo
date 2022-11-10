@@ -1,11 +1,14 @@
-import React from 'react';
-
-const Auth = () => {
-    return (
-        <div>
-            <h1>jwt</h1>
-        </div>
-    );
-};
-
-export default Auth;
+export const setAuthToken = (user) => {
+    const currentUser = {
+        email: user?.email
+    }
+    fetch(`http://localhost:5000/jwt`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(currentUser)
+    })
+        .then(res => res.json())
+        .then(data => {
+            localStorage.setItem('cloud-token', data.token)
+        })
+}

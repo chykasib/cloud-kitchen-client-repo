@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../../Context/AuthProvider';
 import useTitle from '../../Hooks/UseTitle';
+import { setAuthToken } from '../../api/Auth';
 
 const Register = () => {
     const { createUser, googleSingIn, githubLogin, updateUserProfile } = useContext(AuthContext)
@@ -21,6 +22,7 @@ const Register = () => {
         createUser(email, password)
             .then(result => {
                 const user = result.user;
+                setAuthToken(user)
                 form.reset('');
                 updateUserProfileHandler(name, photoURL)
                 console.log(user);
@@ -42,6 +44,7 @@ const Register = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user)
+                setAuthToken(user)
             })
             .catch(error => console.error(error))
     }

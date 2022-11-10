@@ -15,12 +15,12 @@ const AuthProvider = ({ children }) => {
     }
     const signInByEmailAndPassword = (email, password) => {
         setLoading(true)
-        return signInWithEmailAndPassword(email, password)
+        return signInWithEmailAndPassword(auth, email, password)
     }
 
     const logOut = () => {
         setLoading(true)
-        // localStorage.removeItem()
+        localStorage.removeItem('cloud-token')
         return signOut(auth)
     }
 

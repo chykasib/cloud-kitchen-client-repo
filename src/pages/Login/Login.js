@@ -6,6 +6,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../../Context/AuthProvider';
 import useTitle from '../../Hooks/UseTitle';
+import { setAuthToken } from '../../api/Auth';
 const Login = () => {
     const location = useLocation();
     const navigate = useNavigate();
@@ -22,8 +23,13 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 form.reset('');
-                navigate(from, { replace: true })
                 console.log(user)
+                const currentUser = {
+                    email: user.email
+                }
+                console.log(currentUser)
+                // get jwt token
+                setAuthToken(user)
             })
             .catch(error => console.error(error));
 
@@ -34,6 +40,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user)
+                setAuthToken(user)
                 navigate(from, { replace: true })
             })
             .catch(error => console.error(error))
