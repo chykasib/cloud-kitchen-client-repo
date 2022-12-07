@@ -25,7 +25,7 @@ const AddService = () => {
 
         }
         console.log(service)
-        fetch('https://cloud-kitchen-server-iota.vercel.app/AllServices', {
+        fetch('https://cloud-server-delta.vercel.app/AllServices', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(service)

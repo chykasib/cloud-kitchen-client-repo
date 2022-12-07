@@ -8,7 +8,7 @@ const ReviewSection = ({ _id, name }) => {
     const { user } = useContext(AuthContext)
     const [reviews, setReviews] = useState([]);
     useEffect(() => {
-        fetch(`https://cloud-kitchen-server-iota.vercel.app/reviews?email=${user?.email}`)
+        fetch(`https://cloud-server-delta.vercel.app/reviews?email=${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 setReviews(data)
@@ -26,7 +26,7 @@ const ReviewSection = ({ _id, name }) => {
             review
 
         }
-        fetch('https://cloud-kitchen-server-iota.vercel.app/reviews', {
+        fetch('https://cloud-server-delta.vercel.app/reviews', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

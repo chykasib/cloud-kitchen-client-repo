@@ -1,8 +1,8 @@
-** My website name : rock cloud Kitchen 
-** I used this website login authentication three ways email and password, google, github.
-** In this website user can add reviews and he / she can see only his/her reviews and this website two button reviews update button and delete button this route protected by private route 
-** this website any user can see home page and blog data without login 
-** Web site live link: https://rock-cloud-kitchen.web.app/
+My website name : rock cloud Kitchen 
+Simple personalized homemade food shop and delivery services.
+Users can log in by GitHub, google, or email-password system.
+If the user logs in, the user can add a review, see his/her review, and delete the review.
+Web site live link: https://rock-cloud-kitchen.web.app/
 
 
 

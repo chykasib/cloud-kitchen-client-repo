@@ -8,7 +8,7 @@ const Reviews = () => {
     const [reviews, setReviews] = useState([]);
     useTitle('Reviews')
     useEffect(() => {
-        fetch(`https://cloud-kitchen-server-iota.vercel.app/reviews?email=${user?.email}`,
+        fetch(`https://cloud-server-delta.vercel.app/reviews?email=${user?.email}`,
             {
                 // headers: {
                 //     authorization: `bearer ${localStorage.getItem('cloud-token')}`
@@ -25,7 +25,7 @@ const Reviews = () => {
     }, [user?.email])
 
     const handleDelete = id => {
-        fetch(`https://cloud-kitchen-server-iota.vercel.app/reviews/${id}`, {
+        fetch(`https://cloud-server-delta.vercel.app/reviews/${id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('cloud-token')}`
@@ -43,7 +43,7 @@ const Reviews = () => {
     }
 
     const HandleUpdateReview = id => {
-        fetch(`https://cloud-kitchen-server-iota.vercel.app/reviews/${id}`, {
+        fetch(`https://cloud-server-delta.vercel.app/reviews/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(user)
