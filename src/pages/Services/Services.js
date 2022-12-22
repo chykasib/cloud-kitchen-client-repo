@@ -9,7 +9,7 @@ const Services = () => {
     return (
         <div className='container my-5'>
             <>
-                <Row xs={1} md={3} className="g-4">
+                <Row lg={1} sm={1} className="g-4">
                     {
                         allServices.map(allService => <Service key={allService._id} allService={allService}></Service>)
                     }
