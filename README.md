@@ -1,8 +1,25 @@
-My website name : rock cloud Kitchen 
-Simple personalized homemade food shop and delivery services.
-Users can log in by GitHub, google, or email-password system.
-If the user logs in, the user can add a review, see his/her review, and delete the review.
-Web site live link: https://rock-cloud-kitchen.web.app/
+Overview:
+=> A simple personalized homemade food shop and delivery service
+=> Users can log in via GitHub, Google, or email and password
+=> If a user logs in, they can add, view, and delete reviews
+Features:
+=> Multiple login options: GitHub, Google, email and password
+=> Review functionality for logged-in users:
+=> Add a review
+=> View their own reviews
+=> Delete their own reviews
+Technologies:
+=> react-bootstrap
+=> react-router-Dom
+=> react-toastify
+=> firebase
+=> react-icons
+=> react-photo-view
+=> react-hot-toast
+=> mongodb
+=> jsonwebtoken
+=> express.js
+=> vercel
 
 
 
